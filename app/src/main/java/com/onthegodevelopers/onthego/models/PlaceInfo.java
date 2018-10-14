@@ -13,10 +13,11 @@ public class PlaceInfo {
     private LatLng latLng;
     private float rating;
     private String attributions;
+    private String addressLine;
 
     public PlaceInfo(String name, String address, String phoneNumber,
                      String id, Uri websiteUri, LatLng latLng,
-                     float rating, String attributions) {
+                     float rating, String attributions, String addressLine ) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -25,6 +26,7 @@ public class PlaceInfo {
         this.latLng = latLng;
         this.rating = rating;
         this.attributions = attributions;
+        this.addressLine = addressLine;
     }
 
     public PlaceInfo() {
@@ -93,6 +95,14 @@ public class PlaceInfo {
 
     public void setAttributions(String attributions) {
         this.attributions = attributions;
+    }
+
+    public void setAddressLine(String addressLine){
+        this.addressLine = addressLine;
+    }
+
+    public String getAddressLine(){
+        return addressLine;
     }
 
     @Override

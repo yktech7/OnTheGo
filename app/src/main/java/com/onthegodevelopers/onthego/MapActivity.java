@@ -187,6 +187,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             if(task.isSuccessful()){
                                 Log.d(TAG, "onComplete: found location!");
                                 Location currentLocation = (Location) task.getResult();
+
+                                String complAddress = null;
+                                //Place current location address in Autosuggestion field
+                                complAddress = placeAddress(currentLocation);
+                                mSearchText.setText(complAddress);
+
+
                                 //move Camera
                                 moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM, "My location");
                             }
@@ -324,5 +331,40 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             places.release();
         }
     };
+
+    private String placeAddress(Location currentLocationupd) {
+        Geocoder geocoder1 = new Geocoder(getApplicationContext());
+        String str = null;
+        Address returnAddress = null;
+        try {
+            List<Address> addressList = geocoder1.getFromLocation(currentLocationupd.getLatitude(), currentLocationupd.getLongitude(), 1);
+            if (addressList.size() > 0){
+               returnAddress = addressList.get(0);
+               str = returnAddress.getAddressLine(0);
+            /*    for (int i = 0; i < returnAddress.getMaxAddressLineIndex(); i++){
+                    if(i == 0){
+                        if (returnAddress.getAddressLine(i) != null){
+                        str += returnAddress.getAddressLine(i);
+                        }
+                    }
+                    else{
+                        if (returnAddress.getAddressLine(i) != null) {
+                            str += ", " + returnAddress.getAddressLine(i);
+                        }
+                    }
+                }    */
+            }
+         //   str += ", " + addressList.get(0).getSubLocality();
+         //   str += ", " + addressList.get(0).getLocality();
+            //str += addressList.get(0).getLocale();
+
+           // str += ", " + addressList.get(0).getPostalCode();
+           // str += ", " + addressList.get(0).getCountryName();
+
+        } catch (IOException e) {
+            Log.e(TAG, "placeAddress: " + e.getMessage());
+        }
+        return str;
+    }
 
 }
