@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.Marker;
 import com.onthegodevelopers.onthego.models.PlaceInfo;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -62,6 +63,36 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "onMapReady: Map is ready");
         mMap = googleMap;
 
+        //Marker draggable
+        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                Geocoder gc = new Geocoder(MapActivity.this);
+                LatLng ll = marker.getPosition();
+                List<Address> listAddress = null;
+                String complAdd = null;
+                try{
+                    listAddress = gc.getFromLocation(ll.latitude, ll.longitude, 1);
+                    Address addr = listAddress.get(0);
+                    complAdd = addr.getAddressLine(0);
+                    //Place current location address in Autosuggestion field
+                    mSearchText.setText(complAdd);
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        });
         if (mLocationPermissionGranted) {
             getDeviceLocation();
 
@@ -213,7 +244,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void moveCamera(LatLng latLng, float zoom, String title){
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
-        if (title != "My location") {
+//        if (title != "My location") {
             //Display marker
 //            MarkerOptions options = new MarkerOptions();
 //            options.position(latLng);
@@ -222,8 +253,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             MarkerOptions options = new MarkerOptions();
             options .position(latLng);
             options.title(title);
+            options.draggable(true);
             mMap.addMarker(options);
-        }
+  //      }
         hideSoftKeyBoard();
     }
     private void initMap(){
