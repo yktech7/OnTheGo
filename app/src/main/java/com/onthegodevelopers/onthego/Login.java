@@ -3,6 +3,7 @@ package com.onthegodevelopers.onthego;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +13,7 @@ public class Login extends AppCompatActivity {
     private Button oForgotButton;
     private Button oSignUpButton;
     EditText UsernameEt,UserPasswordEt;
-
+    private static final String TAG = "Login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +43,11 @@ public class Login extends AppCompatActivity {
     public void onLoginButton(View view) {
          String username = UsernameEt.getText().toString();
          String userpass = UserPasswordEt.getText().toString();
+         Log.d(TAG, "Login button clicked");
          String type = "login";
          BackgroundWorker backgroundWorker = new BackgroundWorker(this);
          backgroundWorker.execute(type,username,userpass);
+
 
     }
 
