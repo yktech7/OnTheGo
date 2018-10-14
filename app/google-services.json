@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:677324149084:android:813d8e7ccf3be2ab",
+        "mobilesdk_app_id": "1:677324149084:android:46223b6ab29bf4f3",
         "android_client_info": {
           "package_name": "com.onthegodevelopers.onthego"
         }
       },
       "oauth_client": [
         {
-          "client_id": "677324149084-pjsajjrlp9e3bs35q6re0tgpiasf610n.apps.googleusercontent.com",
+          "client_id": "677324149084-0bsi9kf0k6ea20avimk7e987nbkj8uho.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.onthegodevelopers.onthego",
