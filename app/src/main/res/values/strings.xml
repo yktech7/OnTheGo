@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">OnTheGo</string>
     <string name="title_activity_submit_otp">submit_otp</string>
+    <string name="google_maps_API_key">AIzaSyBXagKSXlsLOGKQJ8YE4ephYeD_pjdVrTU</string>
 </resources>
