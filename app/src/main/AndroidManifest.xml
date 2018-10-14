@@ -31,6 +31,7 @@
         <activity android:name="com.onthegodevelopers.onthego.resetPassword" />
         <activity android:name="com.onthegodevelopers.onthego.submit_otp" />
         <activity android:name="com.onthegodevelopers.onthego.SignUp"></activity>
+        <activity android:name="com.onthegodevelopers.onthego.Login"></activity>
         <activity android:name="com.onthegodevelopers.onthego.MapActivity" />
     </application>
 

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
     //Check Google Play services version
     public boolean isServicesOK() {
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void onLogin1(){
+    public void onLogin(View view) {
         Intent oIntent = new Intent(this, Login.class);
         startActivity(oIntent);
     }
