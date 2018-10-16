@@ -1,6 +1,7 @@
 package com.onthegodevelopers.onthego;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,8 +55,10 @@ public class Login extends AppCompatActivity {
     private void onLogin(){
          Log.d(TAG, "Login button clicked");
          String type = "login";
-         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-         backgroundWorker.execute(type,username,userpass);
+//         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+//         backgroundWorker.execute(type,username,userpass);
+        UserConnect userConnect = new UserConnect(this);
+        userConnect.execute(type,username,userpass);
     }
 
     private void initialize(){
