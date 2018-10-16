@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
     private Button oForgotButton;
     private Button oSignUpButton;
     EditText UsernameEt,UserPasswordEt;
+    String username,userpass;
     private static final String TAG = "Login";
 
     @Override
@@ -41,14 +43,37 @@ public class Login extends AppCompatActivity {
     }
 
     public void onLoginButton(View view) {
-         String username = UsernameEt.getText().toString();
-         String userpass = UserPasswordEt.getText().toString();
+        initialize();
+        if (!validate()) {
+            Toast.makeText(this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
+        } else {
+            onLogin();
+        }
+    }
+
+    private void onLogin(){
          Log.d(TAG, "Login button clicked");
          String type = "login";
          BackgroundWorker backgroundWorker = new BackgroundWorker(this);
          backgroundWorker.execute(type,username,userpass);
+    }
 
+    private void initialize(){
+        username = UsernameEt.getText().toString();
+        userpass = UserPasswordEt.getText().toString();
+    }
 
+    public Boolean validate(){
+        boolean valid=true;
+        if (username.isEmpty()){
+            UsernameEt.setError("Please enter valid Email ID or Mobile Number");
+            valid =false;
+        }
+        if (userpass.isEmpty() || userpass.length() >32){
+            UserPasswordEt.setError("Password cannot be empty, Please enter a valid password");
+            valid =false;
+        }
+        return  valid;
     }
 
     public void openResetPasswordActivity(){

@@ -119,7 +119,7 @@
         app:layout_constraintVertical_bias="0.046" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/userCPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -154,7 +154,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6"
+        app:layout_constraintTop_toBottomOf="@+id/userCPassword"
         app:layout_constraintVertical_bias="0.851" />
 
 </android.support.constraint.ConstraintLayout>
