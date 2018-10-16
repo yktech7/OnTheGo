@@ -24,16 +24,21 @@
             android:layout_height="match_parent">
 
 
-
             <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="566dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
                 tools:context=".MapsActivity"
                 tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
+                tools:layout_editor_absoluteY="0dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="0dp" />
 
             <RelativeLayout
                 android:id="@+id/relLayout1"
@@ -76,6 +81,26 @@
                 android:src="@drawable/ic_gps"
                 tools:layout_editor_absoluteX="10dp"
                 tools:layout_editor_absoluteY="167dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:layout_alignStart="@+id/relLayout1"
+
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="273dp"
+                android:layout_marginTop="453dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+
+                android:text="Next"
+                android:textAllCaps="false"
+                android:layout_alignLeft="@+id/relLayout1"
+                android:layout_marginLeft="273dp" />
         </RelativeLayout>
     </LinearLayout>
 

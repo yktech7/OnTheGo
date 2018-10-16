@@ -173,6 +173,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         drawerLayout.closeDrawers();
                         return true;
                     }
+                    case R.id.menuOrderHistory:{
+                        menuItem.setChecked(true);
+                        //call Order history activity/page here
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
+                    case R.id.menuSettings:{
+                        menuItem.setChecked(true);
+                        //call Settings activity or page here
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
+                    case R.id.menuSignOut:{
+                        menuItem.setChecked(true);
+                        //call sing out action
+                        drawerLayout.closeDrawers();
+                    }
                 }
                 return false;
             }
