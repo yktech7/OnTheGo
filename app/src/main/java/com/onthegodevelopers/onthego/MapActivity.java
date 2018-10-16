@@ -1,12 +1,14 @@
 package com.onthegodevelopers.onthego;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -54,6 +56,9 @@ import com.google.android.gms.tasks.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static android.support.v4.view.GravityCompat.START;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener {
@@ -133,9 +138,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private PlaceInfo mPlace;
 
-    //asign default toolbar this project
+    //asign default toolbar to this project
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -151,6 +157,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
+        //get drawer layout id
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //get Navigaton layout id
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch(menuItem.getItemId()){
+                    case R.id.menuLogin:{
+                        menuItem.setChecked(true);
+                        Intent loginIntent = new Intent(MapActivity.this, Login.class);
+                        startActivity(loginIntent);
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
         mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
         mGps = (ImageView) findViewById(R.id.ic_gps);
         //mText = (TextView) findViewById(R.id.currentLocation) ;
@@ -163,13 +189,24 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     //Logic for handling menu icon clicks
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //Begin of logic to identify user name and display on Menu side page
+        TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
+        String guestText = "Guest";
+        String userName = null;
+        String welcomeUser = null;
+        if (userName == null){
+            welcomeUser = "Welcome, " + guestText;
+        }
+        //End of logic to identify user name and display on Menu side page
+
         switch (item.getItemId()){
-            case android.R.id.home:
+            case android.R.id.home: {
+                welcomeText.setText(welcomeUser);
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
