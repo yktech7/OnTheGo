@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.onthegodevelopers.onthego">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -21,19 +21,29 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBXagKSXlsLOGKQJ8YE4ephYeD_pjdVrTU"/>
-        <activity android:name="com.onthegodevelopers.onthego.MainActivity">
+            android:value="AIzaSyBXagKSXlsLOGKQJ8YE4ephYeD_pjdVrTU" />
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.onthegodevelopers.onthego.resetPassword" />
-        <activity android:name="com.onthegodevelopers.onthego.submit_otp" />
-        <activity android:name="com.onthegodevelopers.onthego.SignUp"></activity>
-        <activity android:name="com.onthegodevelopers.onthego.Login"></activity>
-        <activity android:name="com.onthegodevelopers.onthego.MapActivity" />
+        <activity android:name=".resetPassword" />
+        <activity android:name=".submit_otp" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".Login" />
+        <activity android:name=".MapActivity" />
+        <activity
+            android:name=".LiveTracking"
+            android:label="@string/title_activity_live_tracking" />
+        <activity
+            android:name=".TrackOrder"
+            android:label="@string/title_activity_track_order" />
+        <activity
+            android:name=".deliveryBoyMapActivity"
+            android:label="@string/title_activity_delivery_boy_map"></activity>
     </application>
 
 </manifest>

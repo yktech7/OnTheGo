@@ -8,6 +8,9 @@
             android:id="@+id/menuOrderHistory"
             android:title="View Order History" />
         <item
+            android:id="@+id/menuTrackOrder"
+            android:title="Track Order"/>
+        <item
             android:id="@+id/menuSettings"
             android:title="Settings"
             android:icon="@drawable/ic_settings"/>

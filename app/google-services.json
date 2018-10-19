@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "677324149084",
-    "firebase_url": "https://onthego-5be95.firebaseio.com",
-    "project_id": "onthego-5be95",
-    "storage_bucket": "onthego-5be95.appspot.com"
+    "project_number": "1033417131758",
+    "firebase_url": "https://onthegfolocationtracker.firebaseio.com",
+    "project_id": "onthegfolocationtracker",
+    "storage_bucket": "onthegfolocationtracker.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:677324149084:android:46223b6ab29bf4f3",
+        "mobilesdk_app_id": "1:1033417131758:android:813d8e7ccf3be2ab",
         "android_client_info": {
           "package_name": "com.onthegodevelopers.onthego"
         }
       },
       "oauth_client": [
         {
-          "client_id": "677324149084-0bsi9kf0k6ea20avimk7e987nbkj8uho.apps.googleusercontent.com",
+          "client_id": "1033417131758-r6d13b0v0bo8p59rolionveg96mividh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.onthegodevelopers.onthego",
-            "certificate_hash": "6792074b6e2984cbdd93127929064a7d28124fbb"
+            "certificate_hash": "90cf19e2f8a0cc82f0962fd90b5c4b05e69f37b6"
           }
         },
         {
-          "client_id": "677324149084-8644h1hdhf6c0gktmlbms55blbadefq6.apps.googleusercontent.com",
+          "client_id": "1033417131758-5e6thdg65jfguo1sl5b0uvdg1tiifk8b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD18XCRDAcVADUzqWksA6q4Yt7gr7A_S_Y"
+          "current_key": "AIzaSyDr_z--0bE4jVNDcqjbTAepQqj8uD9X7sM"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "677324149084-8644h1hdhf6c0gktmlbms55blbadefq6.apps.googleusercontent.com",
+              "client_id": "1033417131758-5e6thdg65jfguo1sl5b0uvdg1tiifk8b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

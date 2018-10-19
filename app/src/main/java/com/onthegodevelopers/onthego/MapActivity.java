@@ -179,6 +179,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         drawerLayout.closeDrawers();
                         return true;
                     }
+                    case R.id.menuTrackOrder:{
+                        menuItem.setChecked(true);
+                        //call track order map
+                        Intent trackIntent = new Intent(MapActivity.this, TrackOrder.class);
+                        startActivity(trackIntent);
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }
                     case R.id.menuSettings:{
                         menuItem.setChecked(true);
                         //call Settings activity or page here
@@ -329,6 +337,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void moveCamera(LatLng latLng, float zoom, String title){
         Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude );
+        mMap.clear();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 //        if (title != "My location") {
             //Display marker

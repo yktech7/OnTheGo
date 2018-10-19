@@ -24,6 +24,9 @@ allprojects {
         maven {
             url "https://maven.google.com"
         }
+//        msven{
+//            url "https://maven.fabric.io/public"
+//        }
     }
 }
 
