@@ -43,7 +43,8 @@
             android:label="@string/title_activity_track_order" />
         <activity
             android:name=".deliveryBoyMapActivity"
-            android:label="@string/title_activity_delivery_boy_map"></activity>
+            android:label="@string/title_activity_delivery_boy_map" />
+        <activity android:name=".HotelsList"></activity>
     </application>
 
 </manifest>

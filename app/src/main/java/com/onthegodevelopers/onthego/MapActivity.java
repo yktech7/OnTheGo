@@ -30,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Marker;
 import com.onthegodevelopers.onthego.models.PlaceInfo;
 import com.google.android.gms.common.ConnectionResult;
@@ -63,6 +64,11 @@ import static android.support.v4.view.GravityCompat.START;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener {
 
+    public void onNext(View view){
+        Intent menuIntent = new Intent(MapActivity.this, HotelsList.class);
+        startActivity(menuIntent);
+    }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -75,6 +81,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "onMapReady: Map is ready");
         mMap = googleMap;
 
+        //Begin of camera movemen logic
+        //End of camera movement logic
         //Marker draggable
         mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
             @Override

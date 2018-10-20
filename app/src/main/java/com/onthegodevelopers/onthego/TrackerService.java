@@ -49,8 +49,8 @@ public class TrackerService extends Service {
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.notification_text))
                 .setOngoing(true)
-                .setContentIntent(broadcastIntent)
-                .setSmallIcon(R.drawable.ic_tracker);
+                .setContentIntent(broadcastIntent);
+//                .setSmallIcon(R.drawable.ic_tracker);
         startForeground(1, builder.build());
     }
 

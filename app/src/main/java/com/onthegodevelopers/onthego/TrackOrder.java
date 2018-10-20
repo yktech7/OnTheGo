@@ -3,6 +3,7 @@ package com.onthegodevelopers.onthego;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -18,10 +19,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
@@ -68,7 +72,8 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback {
 
         ArrayList<Marker> markers = new ArrayList<>();
         markers.add(mMap.addMarker(new MarkerOptions().position(customerLocation)
-                .title("My Location")));
+                .title("My Location")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
 
         //add marker for delivery boy location
         LatLng deliveryBoyLocation = new LatLng(mDeliveryBoyLatitude, mDeliveryBoyLongitude);
@@ -86,6 +91,11 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback {
         LatLngBounds latLongBounds = latLongBuilder.build();
 
         int padding = 200; //30 pixels
+
+//        Polyline line = mMap.addPolyline(new PolylineOptions()
+//                .add(customerLocation, deliveryBoyLocation)
+//                .width(5)
+//                .color(Color.RED));
 
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(latLongBounds, padding);
         // mMap.animateCamera(cu);
