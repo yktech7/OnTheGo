@@ -23,22 +23,47 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!--<FrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--&gt;-->
 
-            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="566dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                tools:context=".MapsActivity"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="0dp" />
+
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    tools:context=".MapsActivity"
+                    android:layout_centerInParent="true"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="1dp"
+                        android:layout_height="1dp"
+                        android:layout_centerInParent="true"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_above="@+id/view"
+                        android:src="@mipmap/ic_locationpicker" />
+
+
+
+
 
             <RelativeLayout
                 android:id="@+id/relLayout1"
@@ -71,6 +96,9 @@
 
             </RelativeLayout>
 
+
+            <!--</FrameLayout>-->
+
             <ImageView
                 android:id="@+id/ic_gps"
                 android:layout_width="40dp"
@@ -78,9 +106,12 @@
                 android:layout_below="@+id/relLayout1"
                 android:layout_alignParentRight="true"
                 android:scaleType="centerCrop"
+                android:layout_marginTop="60dp"
                 android:src="@drawable/ic_gps"
                 tools:layout_editor_absoluteX="10dp"
                 tools:layout_editor_absoluteY="167dp" />
+
+
 
             <Button
                 android:layout_width="wrap_content"

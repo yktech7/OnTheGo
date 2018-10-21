@@ -209,11 +209,14 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
             } catch (Exception e) {
                 Log.d("Background Task", e.toString());
             }
+//            Toast.makeText(TrackOrder.this, "Error: " + data.toString(), Toast.LENGTH_LONG).show();
             return data;
+
         }
 
         @Override
         protected void onPostExecute(String result) {
+
             super.onPostExecute(result);
 
             TrackOrder.ParserTask parserTask = new TrackOrder.ParserTask();
@@ -248,6 +251,7 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         protected void onPostExecute(List<List<HashMap>> result) {
+            try{
             ArrayList points = null;
             PolylineOptions lineOptions = null;
             MarkerOptions markerOptions = new MarkerOptions();
@@ -281,6 +285,10 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
 
 // Drawing polyline in the Google Map for the i-th route
             mMap.addPolyline(lineOptions);
+        }
+        catch (NullPointerException e){
+            Toast.makeText(TrackOrder.this, "Error while fetching routes: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
         }
     }
 

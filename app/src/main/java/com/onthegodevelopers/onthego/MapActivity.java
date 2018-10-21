@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -18,7 +19,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Marker;
 import com.onthegodevelopers.onthego.models.PlaceInfo;
@@ -57,12 +58,10 @@ import com.google.android.gms.tasks.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import static android.support.v4.view.GravityCompat.START;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener,
+        GoogleMap.OnCameraIdleListener{
 
     public void onNext(View view){
         Intent menuIntent = new Intent(MapActivity.this, HotelsList.class);
@@ -124,7 +123,40 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
             init();
         }
+
+        mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+            @Override
+            public void onCameraIdle() {
+                mCenterLatLng = mMap.getCameraPosition().target;
+                Log.d(TAG, "Camera position changed: " + mCenterLatLng);
+
+                //mMap.clear();
+                if (mCenterLatLng != null){
+                    //now update marker position address on search text box
+                    updateAddressOnSearchTextBox(mCenterLatLng);
+                }
+            }
+        });
     }
+
+    //Begin of logic to update complete address on search text box
+    private void updateAddressOnSearchTextBox(LatLng mCameraPosition) {
+        Geocoder gc = new Geocoder(MapActivity.this);
+        List<Address> listAddress = null;
+        String complAdd = null;
+        try {
+            listAddress = gc.getFromLocation(mCameraPosition.latitude, mCameraPosition.longitude, 1);
+            if (listAddress.size() > 0) {
+                Address addr = listAddress.get(0);
+                complAdd = addr.getAddressLine(0);
+                //Place current location address in Autosuggestion field
+                mSearchText.setText(complAdd);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //End of logic to update complete address on search text box
 
     public static final String TAG = "MapActivity";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -145,6 +177,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
     private PlaceInfo mPlace;
+    private LatLng mCenterLatLng;
 
     //asign default toolbar to this project
     private Toolbar toolbar;
@@ -348,16 +381,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.clear();
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 //        if (title != "My location") {
-            //Display marker
+            //Begin of comment to hide marker as the marker is already inserted at center of the Map (in Layout)
 //            MarkerOptions options = new MarkerOptions();
-//            options.position(latLng);
+//            options .position(latLng);
 //            options.title(title);
+//            options.draggable(true);
+//            options.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_locationpicker));
 //            mMap.addMarker(options);
-            MarkerOptions options = new MarkerOptions();
-            options .position(latLng);
-            options.title(title);
-            options.draggable(true);
-            mMap.addMarker(options);
+        //End of comment to hide marker as the marker is already inserted at center of the Map (in Layout)
   //      }
         hideSoftKeyBoard();
     }
@@ -502,4 +533,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return str;
     }
 
+    @Override
+    public void onCameraIdle() {
+        LatLng mPosition = mMap.getCameraPosition().target;
+        //mMap.getCameraPosition().zoom;
+
+
+    }
 }
