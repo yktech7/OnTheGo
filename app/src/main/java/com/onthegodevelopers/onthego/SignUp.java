@@ -55,10 +55,10 @@ public class SignUp extends AppCompatActivity {
         }
         Log.i("INFO",user_cpass);
         Log.i("INFO",user_pass);
-        if (user_cpass.isEmpty() || user_cpass.length() >32 || user_pass != user_cpass){
-            userCPassword.setError("Password are mismatched");
-            valid =false;
-        }
+//        if (user_cpass.isEmpty() || user_cpass.length() >32 || user_pass != user_cpass){
+//            userCPassword.setError("Password are mismatched");
+//            valid =false;
+//        }
         if (user_mobile.isEmpty() || user_mobile.length() != 10 ){
             userMobileNo.setError("Please enter a valid Mobile number");
             valid =false;
