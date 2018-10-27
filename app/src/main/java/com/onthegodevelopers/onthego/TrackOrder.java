@@ -67,6 +67,8 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
     private static final float DEFAULT_ZOOM = 15f;
     public double deliveryBoyLatitude;
     public double getDeliveryBoyLongitude;
+    public double foodDestinationLatitude;
+    public double foodDestinationLongitude;
     private List<Polyline> polylines;
     private static final int[] COLORS = new int[] {
 //                                                   R.color.primary_dark,
@@ -89,15 +91,27 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
                                 == PackageManager.PERMISSION_GRANTED) {
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                     Location lastKnownCustLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    updateMap(lastKnownCustLocation, deliveryBoyLatitude, getDeliveryBoyLongitude);
+                    //Write Logic here to update customer location to DB so that we can use this to show to delivery boy
+
+                    //Write logic here to get delivery boy location latitude & Longitude and
+                    //Food destination latitude & Longitude from DB
+                    deliveryBoyLatitude = 14.91;
+                    getDeliveryBoyLongitude = 75.50;
+
+                    foodDestinationLatitude = 13.03;
+                    foodDestinationLongitude = 74.90;
+
+                   // updateMap(lastKnownCustLocation, deliveryBoyLatitude, getDeliveryBoyLongitude);
+                    updateMap(foodDestinationLatitude, foodDestinationLongitude, deliveryBoyLatitude, getDeliveryBoyLongitude);
+
                 }
 //                mMap.setMyLocationEnabled(true);
             }
         }
     }
 
-    public void updateMap(Location custLocation, double mDeliveryBoyLatitude, double mDeliveryBoyLongitude) {
-        LatLng customerLocation = new LatLng(custLocation.getLatitude(), custLocation.getLongitude());
+    public void updateMap(double mFoodDestinationLatitude, double mFoodDestinationLongitude, double mDeliveryBoyLatitude, double mDeliveryBoyLongitude) {
+        //LatLng customerLocation = new LatLng(custLocation.getLatitude(), custLocation.getLongitude());
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -109,7 +123,8 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
 //        erasePolylines();    //Clear route in map
 
         ArrayList<Marker> markers = new ArrayList<>();
-        markers.add(mMap.addMarker(new MarkerOptions().position(customerLocation)
+        LatLng foodDestinationLocation = new LatLng(mFoodDestinationLatitude, mFoodDestinationLongitude);
+        markers.add(mMap.addMarker(new MarkerOptions().position(foodDestinationLocation)
                 .title("My Location")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
 
@@ -119,7 +134,7 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
                 .title("Food Location")));
 
         //Draw routes between customer location and delivery boy
-        getRouteToMarker(customerLocation, deliveryBoyLocation);
+        getRouteToMarker(foodDestinationLocation, deliveryBoyLocation);
 
         //Enable my location point
         mMap.setMyLocationEnabled(true);
@@ -189,7 +204,7 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
         StringBuilder googleDirectionsUrl = new StringBuilder("https://maps.googleapis.com/maps/api/directions/json?");
         googleDirectionsUrl.append("origin="+origin.latitude+","+origin.longitude);
         googleDirectionsUrl.append("&destination="+dest.latitude+","+dest.longitude);
-        googleDirectionsUrl.append("&key="+"AIzaSyCzm1wtcrGILEZvaduQrriFZh1PL5o7zkM");
+        googleDirectionsUrl.append("&key="+"AIzaSyDLaFQKip5mP7d5H0sR3sW3N2OxLBYMXfs");
 
         return googleDirectionsUrl.toString();
 //        return url;
@@ -359,12 +374,18 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location custlocation) {
-                //Write Logic here to update customer location to DB
+                //Write Logic here to update customer location to DB so that we can use this to show to delivery boy
 
-                //Write logic here to get delivery boy location from DB
+                //Write logic here to get delivery boy location latitude & Longitude and
+                //Food destination latitude & Longitude from DB
                 deliveryBoyLatitude = 14.91;
                 getDeliveryBoyLongitude = 75.50;
-                updateMap(custlocation, deliveryBoyLatitude, getDeliveryBoyLongitude);
+
+                foodDestinationLatitude = 13.03;
+                foodDestinationLongitude = 74.90;
+
+                //updateMap(custlocation, deliveryBoyLatitude, getDeliveryBoyLongitude);
+                updateMap(foodDestinationLatitude, foodDestinationLongitude, deliveryBoyLatitude, getDeliveryBoyLongitude);
             }
 
             @Override
@@ -412,7 +433,11 @@ public class TrackOrder extends FragmentActivity implements OnMapReadyCallback
                     deliveryBoyLatitude = 17.91;
                     getDeliveryBoyLongitude = 77.50;
 
-                    updateMap(lastKnownCustLocation, deliveryBoyLatitude, getDeliveryBoyLongitude);
+                    foodDestinationLatitude = 16.00;
+                    foodDestinationLongitude = 78.90;
+
+                    //updateMap(lastKnownCustLocation, deliveryBoyLatitude, getDeliveryBoyLongitude);
+                    updateMap(foodDestinationLatitude, foodDestinationLatitude, deliveryBoyLatitude, getDeliveryBoyLongitude);
                 }
             }
 //            mMap.setMyLocationEnabled(true);
