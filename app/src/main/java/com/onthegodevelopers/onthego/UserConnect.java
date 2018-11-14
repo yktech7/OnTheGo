@@ -5,9 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import static com.onthegodevelopers.onthego.MapActivity.TAG;
 
@@ -58,35 +64,50 @@ import static com.onthegodevelopers.onthego.MapActivity.TAG;
     }
 
     @Override
-    protected String doInBackground(String... params) {
-        String type = params[0];
-//        String login_url= "http://10.0.2.2/login.php";
-        String login_url = "http://10.0.2.2/login.php";
-        String signup_url = "http://10.0.2.2/insert_user_data.php";
-        if (type.equals("login")) {
-            String user_name = params[1];
-            String user_pass = params[2];
-            HttpHandler sh = new HttpHandler();
-            String jsonStr = sh.makeLoginServiceCall(login_url, user_name, user_pass);
-            Log.e(TAG, "Response from url: " + jsonStr);
-            try {
-                JSONArray jArray = new JSONArray(jsonStr);
-                String name = jArray.getJSONObject(0).getString("Name");
-                Log.d("INFO", name);
-                return name;
-            } catch (JSONException e) {
-                e.printStackTrace();
+    protected String doInBackground(String... params){
+
+        String getUserUrl="http://ayyoramamovie.in/adworms.in/fetch_user_data.php";
+
+        try {
+            //creating a URL
+            URL url = new URL(getUserUrl);
+
+            //Opening the URL using HttpURLConnection
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+            //StringBuilder object to read the string from the service
+            StringBuilder sb = new StringBuilder();
+
+            //We will use a buffered reader to read the string from service
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+            //A simple string to read values from each line
+            String json;
+
+            //reading until we don't find null
+            while ((json = bufferedReader.readLine()) != null) {
+
+                //appending it to string builder
+                sb.append(json + "\n");
             }
+
+            //finally returning the read string
+            return sb.toString().trim();
+        } catch (Exception e) {
+            return null;
         }
-        return null;
+
     }
+
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         // Dismiss the progress dialog
+        Log.d("INFO",result);
         if (pDialog.isShowing())
             pDialog.dismiss();
+        //Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
 }
 //            /**

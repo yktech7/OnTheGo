@@ -27,8 +27,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... params) {
         String type = params[0];
 //        String login_url= "http://10.0.2.2/login.php";
-        String login_url= "http://10.0.2.2/login.php";
-        String signup_url= "http://10.0.2.2/insert_user_data.php";
+        String login_url= "http://ayyoramamovie.in/adworms.in/fetch_user_data.php";
+        String signup_url= "http://ayyoramamovie.in/adworms.in/insert_users_data.php";
         if(type.equals("login")){
             try {
                 String user_name = params[1];
@@ -80,17 +80,17 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 outputStream.close();
-                InputStream inputStream =httpURLConnection.getInputStream();
-                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String result = "";
-                String line= "";
-                while ((line = bufferedReader.readLine())!=null){
-                    result +=line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
+//                InputStream inputStream =httpURLConnection.getInputStream();
+//                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+//                String result = "";
+//                String line= "";
+//                while ((line = bufferedReader.readLine())!=null){
+//                    result +=line;
+//                }
+//                bufferedReader.close();
+//                inputStream.close();
+//                httpURLConnection.disconnect();
+                return "Sign Up successful, Please login";
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

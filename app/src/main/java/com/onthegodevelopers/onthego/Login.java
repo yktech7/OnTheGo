@@ -55,10 +55,12 @@ public class Login extends AppCompatActivity {
     private void onLogin(){
          Log.d(TAG, "Login button clicked");
          String type = "login";
-//         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-//         backgroundWorker.execute(type,username,userpass);
-        UserConnect userConnect = new UserConnect(this);
-        userConnect.execute(type,username,userpass);
+         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+         backgroundWorker.execute(type,username,userpass);
+//        UserConnect userConnect = new UserConnect(this);
+//        userConnect.execute(type,username,userpass);
+        //GetUserDetails getUserDetails = new GetUserDetails();
+        //getUserDetails.g
     }
 
     private void initialize(){

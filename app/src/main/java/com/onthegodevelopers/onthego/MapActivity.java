@@ -540,4 +540,26 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
     }
+
+    public void onOptionsItemSelected(Void[] userName) {
+        //Begin of logic to identify user name and display on Menu side page
+        TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
+        String guestText = "Guest";
+//        String userName = null;
+        String welcomeUser = null;
+        if (userName == null){
+            welcomeUser = "Welcome, " + guestText;
+        }
+        //End of logic to identify user name and display on Menu side page
+
+        MenuItem item = null;
+        switch (item.getItemId()){
+            case android.R.id.home: {
+                welcomeText.setText(welcomeUser);
+                drawerLayout.openDrawer(GravityCompat.START);
+//                return true;
+            }
+        }
+//        return super.onOptionsItemSelected(item);
+    }
 }

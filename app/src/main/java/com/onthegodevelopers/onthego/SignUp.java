@@ -53,8 +53,8 @@ public class SignUp extends AppCompatActivity {
             userPassword.setError("Please enter a valid Password");
             valid =false;
         }
-        Log.i("INFO",user_cpass);
-        Log.i("INFO",user_pass);
+//        Log.i("INFO",user_cpass);
+//        Log.i("INFO",user_pass);
 //        if (user_cpass.isEmpty() || user_cpass.length() >32 || user_pass != user_cpass){
 //            userCPassword.setError("Password are mismatched");
 //            valid =false;
