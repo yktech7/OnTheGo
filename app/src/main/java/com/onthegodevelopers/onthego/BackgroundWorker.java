@@ -1,8 +1,12 @@
 package com.onthegodevelopers.onthego;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+//import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -16,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Dictionary;
 
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
     Context context;
@@ -90,7 +95,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 //                bufferedReader.close();
 //                inputStream.close();
 //                httpURLConnection.disconnect();
-                return "Sign Up successful, Please login";
+                String result = "Sign Up successful, Please login";
+                return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -104,6 +110,24 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPreExecute() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setMessage("Information saved successfully ! Add Another Info?")
+//                .setCancelable(false)
+//                .setPositiveButton("No", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        Intent intent = new Intent(((Dialog)dialog).getContext(), Login.class);
+//                        //startActivity(new Intent(((Dialog)dialog).getContext(),Login.class));
+//                        startActivity(intent);
+//                    }
+//                })
+//                .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        dialog.cancel();
+//                    }
+//                });
+//        AlertDialog alert = builder.create();
+//        dialog = alert;
+
         alertDialog =new AlertDialog.Builder(context).create();
         alertDialog.setTitle("Login status");
 
@@ -111,8 +135,22 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String result) {
-        alertDialog.setMessage(result);
-        alertDialog.show();
+        if (result == "Sign Up successful, Please login"){
+            alertDialog.setMessage(result);
+            alertDialog.dismiss();
+            alertDialog.show();
+            Intent anothercallActivity=new Intent(context,Login.class);
+            context.startActivity(anothercallActivity);
+        }
+        else
+        {
+            alertDialog.setMessage(result);
+            alertDialog.dismiss();
+            alertDialog.show();
+        }
+
+//        Intent anothercallActivity=new Intent(context,Login.class);
+//        context.startActivity(anothercallActivity);
     }
 
     @Override
